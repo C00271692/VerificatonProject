@@ -14,7 +14,13 @@ public class PeriodTest {
     @Test
     void testInvalidPeriod() {
         assertThrows(IllegalArgumentException.class, () -> new Period(12, 8));
+    }
+    @Test
+    void testInvalidPeriod2() {
         assertThrows(IllegalArgumentException.class, () -> new Period(-1, 10));
+    }
+    @Test
+    void testInvalidPeriod3() {
         assertThrows(IllegalArgumentException.class, () -> new Period(10, 25));
     }
 
@@ -22,8 +28,13 @@ public class PeriodTest {
     void testOverlaps() {
         Period period1 = new Period(8, 12);
         Period period2 = new Period(10, 14);
-        Period period3 = new Period(12, 16);
         assertTrue(period1.overlaps(period2));
+    }
+
+    @Test
+    void testOverlaps2() {
+        Period period1 = new Period(8, 12);
+        Period period3 = new Period(12, 16);
         assertFalse(period1.overlaps(period3));
     }
 
@@ -32,4 +43,8 @@ public class PeriodTest {
         Period period = new Period(8, 12);
         assertEquals(4, period.duration());
     }
-}
+
+    @Test
+    void testInvalidDuration() {
+        assertThrows(IllegalArgumentException.class, () -> new Period(12, 8));
+    }}
